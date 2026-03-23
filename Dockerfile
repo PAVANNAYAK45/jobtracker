@@ -2,11 +2,8 @@ FROM eclipse-temurin:21-jdk
 
 WORKDIR /app
 
-# Copy full project
-COPY . .
+COPY target/jobtracker-0.0.1-SNAPSHOT.jar app.jar
 
-# Build inside container
-RUN chmod +x mvnw && ./mvnw clean package -DskipTests
+EXPOSE 10000
 
-# Run app
-CMD ["java", "-jar", "target/jobtracker-0.0.1-SNAPSHOT.jar"]
+ENTRYPOINT ["java", "-jar", "app.jar"]
